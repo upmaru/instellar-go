@@ -44,7 +44,7 @@ func NewClient(host, uid, secret *string) (*Client, error) {
 		Token: b64.URLEncoding.EncodeToString([]byte(data)),
 	}
 
-	ar, err := c.SignIn()
+	ar, err := c.Authenticate()
 
 	if err != nil {
 		return nil, err
