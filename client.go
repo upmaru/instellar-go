@@ -3,6 +3,7 @@ package instellar
 import (
 	b64 "encoding/base64"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"time"
 )
@@ -71,4 +72,16 @@ func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error)
 	}
 
 	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if res.StatusCode != http.StatusOK {
+		return nil, fmt.Errorf("status: %d body: %s", res.StatusCode, body)
+	}
+
+	return body, err
 }

@@ -2,6 +2,7 @@ package instellar
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -25,4 +26,16 @@ func (c *Client) Authenticate() (*AuthResponse, error) {
 	}
 
 	body, err := c.doRequest(req, nil)
+
+	if err != nil {
+		return nil, errors.New("unable to login")
+	}
+
+	ar := AuthResponse{}
+	err = json.Unmarshal(body, &ar)
+	if err != nil {
+		return nil, err
+	}
+
+	return &ar, nil
 }
