@@ -56,6 +56,8 @@ func NewClient(host, token *string) (*Client, error) {
 func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error) {
 	token := c.Token
 
+	req.Header.Set("Content-Type", "application/json")
+
 	if authToken != nil {
 		token = *authToken
 	}
