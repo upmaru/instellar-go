@@ -39,7 +39,7 @@ func NewClient(host, uid, secret *string) (*Client, error) {
 		return &c, nil
 	}
 
-	data := fmt.Sprintf("organization:%s:%s", uid, secret)
+	data := fmt.Sprintf("organization:%s:%s", *uid, *secret)
 
 	c.Credential = CredentialStruct{
 		Token: b64.URLEncoding.EncodeToString([]byte(data)),
