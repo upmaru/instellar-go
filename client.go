@@ -25,7 +25,7 @@ type AuthResponse struct {
 	Token string `json:"token"`
 }
 
-func NewClient(host, uid, secret *string) (*Client, error) {
+func NewClient(host, uid *string, secret *string) (*Client, error) {
 	c := Client{
 		HTTPClient: &http.Client{Timeout: 10 * time.Second},
 		HostURL:    HostURL,
