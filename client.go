@@ -1,7 +1,6 @@
 package instellar
 
 import (
-	b64 "encoding/base64"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -25,7 +24,7 @@ type AuthResponse struct {
 	Token string `json:"token"`
 }
 
-func NewClient(host, uid *string, secret *string) (*Client, error) {
+func NewClient(host, token *string) (*Client, error) {
 	c := Client{
 		HTTPClient: &http.Client{Timeout: 10 * time.Second},
 		HostURL:    HostURL,
@@ -35,14 +34,12 @@ func NewClient(host, uid *string, secret *string) (*Client, error) {
 		c.HostURL = *host
 	}
 
-	if uid == nil || secret == nil {
+	if token == nil {
 		return &c, nil
 	}
 
-	data := fmt.Sprintf("organization:%s:%s", *uid, *secret)
-
 	c.Credential = CredentialStruct{
-		Token: b64.URLEncoding.EncodeToString([]byte(data)),
+		Token: *token,
 	}
 
 	ar, err := c.Authenticate()
