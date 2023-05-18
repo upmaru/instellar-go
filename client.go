@@ -3,7 +3,9 @@ package instellar
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"net/http/httputil"
 	"time"
 )
 
@@ -60,6 +62,14 @@ func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error)
 		token := *authToken
 		req.Header.Set("Authorization", token)
 	}
+
+	reqDump, err := httputil.DumpRequestOut(req, true)
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("REQUEST:\n%s", string(reqDump))
 
 	res, err := c.HTTPClient.Do(req)
 
