@@ -23,7 +23,9 @@ type CredentialStruct struct {
 }
 
 type AuthResponse struct {
-	Token string `json:"token"`
+	Data struct {
+		Token string `json:"token"`
+	} `json:"data"`
 }
 
 func NewClient(host, token *string) (*Client, error) {
