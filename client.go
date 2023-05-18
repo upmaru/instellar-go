@@ -55,6 +55,15 @@ func NewClient(host, token *string) (*Client, error) {
 	return &c, nil
 }
 
+func notContains(arr []int, target int) bool {
+	for _, num := range arr {
+		if num == target {
+			return false
+		}
+	}
+	return true
+}
+
 func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error) {
 	req.Header.Set("Content-Type", "application/json")
 
@@ -85,7 +94,9 @@ func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error)
 		return nil, err
 	}
 
-	if res.StatusCode != http.StatusOK {
+	accepted := []int{http.StatusOK, http.StatusCreated}
+
+	if notContains(accepted, res.StatusCode) {
 		return nil, fmt.Errorf("status: %d body: %s", res.StatusCode, body)
 	}
 
