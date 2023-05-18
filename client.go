@@ -2,7 +2,7 @@ package instellar
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/http/httputil"
@@ -27,6 +27,8 @@ type AuthResponse struct {
 		Token string `json:"token"`
 	} `json:"data"`
 }
+
+type AcceptedStates []int
 
 func NewClient(host, token *string) (*Client, error) {
 	c := Client{
@@ -57,8 +59,8 @@ func NewClient(host, token *string) (*Client, error) {
 	return &c, nil
 }
 
-func notContains(arr []int, target int) bool {
-	for _, num := range arr {
+func (arr *AcceptedStates) doesNotContain(target int) bool {
+	for _, num := range *arr {
 		if num == target {
 			return false
 		}
@@ -66,12 +68,11 @@ func notContains(arr []int, target int) bool {
 	return true
 }
 
-func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error) {
+func (c *Client) doRequest(req *http.Request) ([]byte, error) {
 	req.Header.Set("Content-Type", "application/json")
 
-	if authToken != nil {
-		token := *authToken
-		req.Header.Set("Authorization", token)
+	if c.Token != "" {
+		req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.Token))
 	}
 
 	reqDump, err := httputil.DumpRequestOut(req, true)
@@ -90,15 +91,15 @@ func (c *Client) doRequest(req *http.Request, authToken *string) ([]byte, error)
 
 	defer res.Body.Close()
 
-	body, err := ioutil.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
 
 	if err != nil {
 		return nil, err
 	}
 
-	accepted := []int{http.StatusOK, http.StatusCreated}
+	accepted := AcceptedStates{http.StatusOK, http.StatusCreated}
 
-	if notContains(accepted, res.StatusCode) {
+	if accepted.doesNotContain(res.StatusCode) {
 		return nil, fmt.Errorf("status: %d body: %s", res.StatusCode, body)
 	}
 

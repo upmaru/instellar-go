@@ -25,7 +25,7 @@ func (c *Client) Authenticate() (*AuthResponse, error) {
 		return nil, err
 	}
 
-	body, err := c.doRequest(req, nil)
+	body, err := c.doRequest(req)
 
 	if err != nil {
 		return nil, errors.New("unable to login")
