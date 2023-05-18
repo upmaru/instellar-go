@@ -7,6 +7,8 @@ import (
 	"strings"
 )
 
+const path = "provision/clusters"
+
 type ClusterParams struct {
 	Name                           string `json:"name"`
 	Provider                       string `json:"provider"`
@@ -16,7 +18,7 @@ type ClusterParams struct {
 }
 
 func (c *Client) GetCluster(clusterID string) (*Cluster, error) {
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/clusters/%s", c.HostURL, clusterID), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/%s/%s", c.HostURL, path, clusterID), nil)
 
 	if err != nil {
 		return nil, err
@@ -46,7 +48,9 @@ func (c *Client) CreateCluster(clusterParams ClusterParams) (*Cluster, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/clusters", c.HostURL), strings.NewReader(string(rb)))
+	req, err := http.NewRequest("POST",
+		fmt.Sprintf("%s/%s", c.HostURL, path),
+		strings.NewReader(string(rb)))
 
 	if err != nil {
 		return nil, err
@@ -69,7 +73,9 @@ func (c *Client) CreateCluster(clusterParams ClusterParams) (*Cluster, error) {
 }
 
 func (c *Client) UpdateCluster(clusterID string) (*Cluster, error) {
-	req, err := http.NewRequest("PATCH", fmt.Sprintf("%s/clusters/%s", c.HostURL, clusterID), nil)
+	req, err := http.NewRequest("PATCH",
+		fmt.Sprintf("%s/%s/%s", c.HostURL, path, clusterID),
+		nil)
 
 	if err != nil {
 		return nil, err
@@ -92,7 +98,9 @@ func (c *Client) UpdateCluster(clusterID string) (*Cluster, error) {
 }
 
 func (c *Client) DeleteCluster(clusterID string) (*Cluster, error) {
-	req, err := http.NewRequest("DELETE", fmt.Sprintf("%s/clusters/%s", c.HostURL, clusterID), nil)
+	req, err := http.NewRequest("DELETE",
+		fmt.Sprintf("%s/%s/%s", c.HostURL, path, clusterID),
+		nil)
 
 	if err != nil {
 		return nil, err

@@ -20,17 +20,25 @@ var authJSON string = fmt.Sprintf(`
 
 var client *Client
 
-func TestNewClient(t *testing.T) {
+func setup() {
 	httpmock.Activate()
-	defer httpmock.DeactivateAndReset()
 
-	httpmock.RegisterResponder("POST", "http://localhost:4000/provision/automation/callback",
+	httpmock.RegisterResponder("POST", "/provision/automation/callback",
 		httpmock.NewStringResponder(201, authJSON))
 
 	var host string = "http://localhost:4000"
 	var token string = "somekindofstring="
 
 	client, _ = NewClient(&host, &token)
+}
+
+func teardown() {
+	httpmock.DeactivateAndReset()
+}
+
+func TestNewClient(t *testing.T) {
+	setup()
+	defer teardown()
 
 	assert.Equal(t, client.Token, jwtToken, "should be equal")
 }

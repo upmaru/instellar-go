@@ -19,7 +19,9 @@ func (c *Client) Authenticate() (*AuthResponse, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", fmt.Sprintf("%s/provision/automation/callback", c.HostURL), strings.NewReader(string(rb)))
+	req, err := http.NewRequest("POST",
+		fmt.Sprintf("%s/provision/automation/callback", c.HostURL),
+		strings.NewReader(string(rb)))
 
 	if err != nil {
 		return nil, err
