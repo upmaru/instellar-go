@@ -52,7 +52,7 @@ func NewClient(host, token *string) (*Client, error) {
 		return nil, err
 	}
 
-	c.Token = ar.Token
+	c.Token = ar.Data.Token
 
 	return &c, nil
 }
