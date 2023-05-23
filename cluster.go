@@ -9,7 +9,7 @@ import (
 
 const path = "provision/clusters"
 
-type Params struct {
+type reqParams struct {
 	Cluster ClusterParams `json:"cluster"`
 }
 
@@ -46,7 +46,7 @@ func (c *Client) GetCluster(clusterID string) (*Cluster, error) {
 }
 
 func (c *Client) CreateCluster(clusterParams ClusterParams) (*Cluster, error) {
-	params := Params{
+	params := reqParams{
 		Cluster: clusterParams,
 	}
 
