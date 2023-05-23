@@ -16,6 +16,7 @@ type reqParams struct {
 type ClusterParams struct {
 	Name                           string `json:"name"`
 	Provider                       string `json:"provider"`
+	Region                         string `json:"region"`
 	CredentialEndpoint             string `json:"credential_endpoint"`
 	CredentialPassword             string `json:"credential_password"`
 	CredentialPasswordConfirmation string `json:"credential_password_confirmation"`
