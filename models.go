@@ -22,6 +22,7 @@ type Uplink struct {
 			InstallationID int    `json:"installation_id"`
 			ClusterID      int    `json:"cluster_id"`
 			ChannelSlug    string `json:"channel_slug"`
+			DatabaseUrl    string `json:"database_url"`
 		} `json:"attributes"`
 	} `json:"data"`
 }
