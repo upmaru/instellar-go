@@ -53,7 +53,6 @@ func TestCreateUplink(t *testing.T) {
 		httpmock.NewStringResponder(200, fmt.Sprintf(uplinkJSON, "created", 1, 2)))
 
 	var uplinkSetupParams = UplinkSetupParams{
-		Name:        "test-example",
 		ChannelSlug: "develop",
 	}
 
