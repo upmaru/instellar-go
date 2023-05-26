@@ -79,8 +79,6 @@ func TestGetUplinkWithDB(t *testing.T) {
 
 	uplink, _ := client.GetUplink("8")
 
-	fmt.Printf("%+v\n", uplink)
-
 	assert.Equal(t, uplink.Data.Attributes.ID, 8)
 	assert.Equal(t, *uplink.Data.Attributes.DatabaseURL, "postgresql://user:pass@localhost/sample_db")
 }
