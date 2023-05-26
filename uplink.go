@@ -15,7 +15,6 @@ type uplinkSetupReq struct {
 }
 
 type UplinkSetupParams struct {
-	Name        string `json:"name"`
 	ChannelSlug string `json:"channel_slug"`
 	DatabaseURL string `json:"database_url"`
 }
