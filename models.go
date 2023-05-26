@@ -21,6 +21,7 @@ type Uplink struct {
 			CurrentState   string `json:"current_state"`
 			InstallationID int    `json:"installation_id"`
 			ClusterID      int    `json:"cluster_id"`
+			ChannelSlug    string `json:"channel_slug"`
 		} `json:"attributes"`
 	} `json:"data"`
 }
