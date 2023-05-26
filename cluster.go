@@ -7,9 +7,9 @@ import (
 	"strings"
 )
 
-const path = "provision/clusters"
+const clustersPath = "provision/clusters"
 
-type reqParams struct {
+type clusterReq struct {
 	Cluster ClusterParams `json:"cluster"`
 }
 
@@ -23,7 +23,7 @@ type ClusterParams struct {
 }
 
 func (c *Client) GetCluster(clusterID string) (*Cluster, error) {
-	req, err := http.NewRequest("GET", fmt.Sprintf("%s/%s/%s", c.HostURL, path, clusterID), nil)
+	req, err := http.NewRequest("GET", fmt.Sprintf("%s/%s/%s", c.HostURL, clustersPath, clusterID), nil)
 
 	if err != nil {
 		return nil, err
@@ -47,7 +47,7 @@ func (c *Client) GetCluster(clusterID string) (*Cluster, error) {
 }
 
 func (c *Client) CreateCluster(clusterParams ClusterParams) (*Cluster, error) {
-	params := reqParams{
+	params := clusterReq{
 		Cluster: clusterParams,
 	}
 
@@ -58,7 +58,7 @@ func (c *Client) CreateCluster(clusterParams ClusterParams) (*Cluster, error) {
 	}
 
 	req, err := http.NewRequest("POST",
-		fmt.Sprintf("%s/%s", c.HostURL, path),
+		fmt.Sprintf("%s/%s", c.HostURL, clustersPath),
 		strings.NewReader(string(rb)))
 
 	if err != nil {
@@ -83,7 +83,7 @@ func (c *Client) CreateCluster(clusterParams ClusterParams) (*Cluster, error) {
 
 func (c *Client) UpdateCluster(clusterID string) (*Cluster, error) {
 	req, err := http.NewRequest("PATCH",
-		fmt.Sprintf("%s/%s/%s", c.HostURL, path, clusterID),
+		fmt.Sprintf("%s/%s/%s", c.HostURL, clustersPath, clusterID),
 		nil)
 
 	if err != nil {
@@ -108,7 +108,7 @@ func (c *Client) UpdateCluster(clusterID string) (*Cluster, error) {
 
 func (c *Client) DeleteCluster(clusterID string) (*Cluster, error) {
 	req, err := http.NewRequest("DELETE",
-		fmt.Sprintf("%s/%s/%s", c.HostURL, path, clusterID),
+		fmt.Sprintf("%s/%s/%s", c.HostURL, clustersPath, clusterID),
 		nil)
 
 	if err != nil {
