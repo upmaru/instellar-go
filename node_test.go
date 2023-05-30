@@ -14,6 +14,7 @@ const nodeJSON = `
     "attributes": {
       "current_state": "%s",
 			"slug": "%s",
+			"cluster_id": 1,
       "id": 8,
 			"public_ip": "127.0.0.1"
     },

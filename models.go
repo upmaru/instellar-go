@@ -34,6 +34,7 @@ type Node struct {
 			CurrentState string `json:"current_state"`
 			Slug         string `json:"slug"`
 			PublicIP     string `json:"public_ip"`
+			ClusterID    int    `json:"cluster_id"`
 		} `json:"attributes"`
 	} `json:"data"`
 }
