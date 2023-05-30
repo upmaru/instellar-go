@@ -26,3 +26,14 @@ type Uplink struct {
 		} `json:"attributes"`
 	} `json:"data"`
 }
+
+type Node struct {
+	Data struct {
+		Attributes struct {
+			ID           int    `json:"id"`
+			CurrentState string `json:"current_state"`
+			Slug         string `json:"slug"`
+			PublicIP     string `json:"public_ip"`
+		} `json:"attributes"`
+	} `json:"data"`
+}
