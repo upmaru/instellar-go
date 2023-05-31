@@ -16,6 +16,9 @@ const clusterJSON = `
     "attributes": {
       "current_state": "%s",
       "id": 8,
+			"endpoint": "127.0.0.1:8443",
+			"region": "ap-southeast-1",
+			"provider": "aws",
       "slug": "%s"
     },
     "id": "8",
@@ -54,7 +57,7 @@ func TestCreateCluster(t *testing.T) {
 	var clusterParams = ClusterParams{
 		Name:                           slug,
 		Provider:                       "aws",
-		CredentialEndpoint:             "https://something:8443",
+		CredentialEndpoint:             "something:8443",
 		CredentialPassword:             "somepass",
 		CredentialPasswordConfirmation: "somepass",
 	}
@@ -71,7 +74,11 @@ func TestUpdateCluster(t *testing.T) {
 	httpmock.RegisterResponder("PATCH", "/provision/clusters/some-test",
 		httpmock.NewStringResponder(200, fmt.Sprintf(clusterJSON, "syncing", slug)))
 
-	cluster, _ := client.UpdateCluster(slug)
+	var clusterParams = ClusterParams{
+		CredentialEndpoint: "anotherthing:8443",
+	}
+
+	cluster, _ := client.UpdateCluster(slug, clusterParams)
 
 	assert.Equal(t, cluster.Data.Attributes.CurrentState, "syncing")
 }
