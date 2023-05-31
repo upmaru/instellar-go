@@ -81,10 +81,20 @@ func (c *Client) CreateCluster(clusterParams ClusterParams) (*Cluster, error) {
 	return &newCluster, nil
 }
 
-func (c *Client) UpdateCluster(clusterID string) (*Cluster, error) {
+func (c *Client) UpdateCluster(clusterID string, clusterParams ClusterParams) (*Cluster, error) {
+	params := clusterReq{
+		Cluster: clusterParams,
+	}
+
+	rb, err := json.Marshal(params)
+
+	if err != nil {
+		return nil, err
+	}
+
 	req, err := http.NewRequest("PATCH",
 		fmt.Sprintf("%s/%s/%s", c.HostURL, clustersPath, clusterID),
-		nil)
+		strings.NewReader(string(rb)))
 
 	if err != nil {
 		return nil, err
