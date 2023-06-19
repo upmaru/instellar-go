@@ -38,3 +38,15 @@ type Node struct {
 		} `json:"attributes"`
 	} `json:"data"`
 }
+
+type Storage struct {
+	Data struct {
+		Attributes struct {
+			ID           int    `json:"id"`
+			CurrentState string `json:"current_state"`
+			Host         string `json:"host"`
+			Bucket       string `json:"bucket"`
+			Region       string `json:"region"`
+		} `json:"attributes"`
+	} `json:"data"`
+}
