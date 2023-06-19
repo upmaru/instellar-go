@@ -16,7 +16,9 @@ const storageJSON = `
 			"current_state": "%s",
 			"host": "%s",
 			"bucket": "instellar",
-			"region": "us-east-1"
+			"region": "us-east-1",
+			"credential_access_key_id": "somekey",
+			"credential_secret_access_key": "somesecret"
 		},
 		"id": "1",
 		"links": {

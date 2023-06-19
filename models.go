@@ -42,11 +42,13 @@ type Node struct {
 type Storage struct {
 	Data struct {
 		Attributes struct {
-			ID           int    `json:"id"`
-			CurrentState string `json:"current_state"`
-			Host         string `json:"host"`
-			Bucket       string `json:"bucket"`
-			Region       string `json:"region"`
+			ID                        int    `json:"id"`
+			CurrentState              string `json:"current_state"`
+			Host                      string `json:"host"`
+			Bucket                    string `json:"bucket"`
+			Region                    string `json:"region"`
+			CredentialAccessKeyID     string `json:"credential_access_key_id"`
+			CredentialSecretAccessKey string `json:"credential_secret_access_key"`
 		} `json:"attributes"`
 	} `json:"data"`
 }
