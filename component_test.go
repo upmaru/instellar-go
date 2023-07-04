@@ -53,3 +53,31 @@ func TestGetComponent(t *testing.T) {
 
 	assert.Equal(t, component.Data.Attributes.Slug, "some-db")
 }
+
+func TestCreateComponent(t *testing.T) {
+	setup()
+	defer teardown()
+
+	httpmock.RegisterResponder("POST", "/provision/components",
+		httpmock.NewStringResponder(201, fmt.Sprintf(componentJSON, "active", "some-db")))
+
+	var componentParams = ComponentParams{
+		Name:       "some-db",
+		Provider:   "aws",
+		Driver:     "database/postgresql",
+		Version:    "15.2",
+		ClusterIDS: []int{1, 2},
+		Channels:   []string{"master", "develop"},
+		Credential: ComponentCredentialParams{
+			Username: "postgres",
+			Password: "postgres",
+			Database: "postgres",
+			Host:     "localhost",
+			Port:     5432,
+		},
+	}
+
+	component, _ := client.CreateComponent(componentParams)
+
+	assert.Equal(t, component.Data.Attributes.Slug, "some-db")
+}
