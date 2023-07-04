@@ -81,3 +81,31 @@ func TestCreateComponent(t *testing.T) {
 
 	assert.Equal(t, component.Data.Attributes.Slug, "some-db")
 }
+
+func TestUpdateComponent(t *testing.T) {
+	setup()
+	defer teardown()
+
+	httpmock.RegisterResponder("PATCH", "/provision/components/8",
+		httpmock.NewStringResponder(200, fmt.Sprintf(componentJSON, "active", "some-db")))
+
+	var componentParams = ComponentParams{
+		ClusterIDS: []int{2},
+	}
+
+	component, _ := client.UpdateComponent("8", componentParams)
+
+	assert.Equal(t, component.Data.Attributes.Slug, "some-db")
+}
+
+func TestDeleteComponent(t *testing.T) {
+	setup()
+	defer teardown()
+
+	httpmock.RegisterResponder("DELETE", "/provision/components/8",
+		httpmock.NewStringResponder(200, fmt.Sprintf(componentJSON, "deleted", "some-db")))
+
+	component, _ := client.DeleteComponent("8")
+
+	assert.Equal(t, component.Data.Attributes.CurrentState, "deleted")
+}
