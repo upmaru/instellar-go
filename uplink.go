@@ -15,8 +15,8 @@ type uplinkSetupReq struct {
 }
 
 type UplinkSetupParams struct {
-	ChannelSlug string `json:"channel_slug"`
-	DatabaseURL string `json:"database_url"`
+	ChannelSlug string `json:"channel_slug,omitempty"`
+	DatabaseURL string `json:"database_url,omitempty"`
 }
 
 func (c *Client) GetUplink(uplinkID string) (*Uplink, error) {

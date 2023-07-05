@@ -14,21 +14,21 @@ type componentReq struct {
 }
 
 type ComponentParams struct {
-	Name       string                    `json:"name"`
-	Provider   string                    `json:"provider"`
-	Version    string                    `json:"version"`
-	Channels   []string                  `json:"channels"`
-	ClusterIDS []int                     `json:"cluster_ids"`
-	Driver     string                    `json:"driver"`
-	Credential ComponentCredentialParams `json:"credential"`
+	Name       string                     `json:"name,omitempty"`
+	Provider   string                     `json:"provider,omitempty"`
+	Version    string                     `json:"version,omitempty"`
+	Channels   []string                   `json:"channels,omitempty"`
+	ClusterIDS []int                      `json:"cluster_ids,omitempty"`
+	Driver     string                     `json:"driver,omitempty"`
+	Credential *ComponentCredentialParams `json:"credential,omitempty"`
 }
 
 type ComponentCredentialParams struct {
-	Username string `json:"username"`
-	Password string `json:"password"`
-	Host     string `json:"host"`
-	Port     int    `json:"port"`
-	Database string `json:"database"`
+	Username string `json:"username,omitempty"`
+	Password string `json:"password,omitempty"`
+	Host     string `json:"host,omitempty"`
+	Port     int    `json:"port,omitempty"`
+	Database string `json:"database,omitempty"`
 }
 
 func (c *Client) GetComponent(componentID string) (*Component, error) {

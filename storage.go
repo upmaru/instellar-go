@@ -14,11 +14,11 @@ type storageReq struct {
 }
 
 type StorageParams struct {
-	Host                      string `json:"host"`
-	Bucket                    string `json:"bucket"`
-	Region                    string `json:"region"`
-	CredentialAccessKeyID     string `json:"credential_access_key_id"`
-	CredentialSecretAccessKey string `json:"credential_secret_access_key"`
+	Host                      string `json:"host,omitempty"`
+	Bucket                    string `json:"bucket,omitempty"`
+	Region                    string `json:"region,omitempty"`
+	CredentialAccessKeyID     string `json:"credential_access_key_id,omitempty"`
+	CredentialSecretAccessKey string `json:"credential_secret_access_key,omitempty"`
 }
 
 func (c *Client) GetStorage(storageID string) (*Storage, error) {

@@ -14,12 +14,12 @@ type clusterReq struct {
 }
 
 type ClusterParams struct {
-	Name                           string `json:"name"`
-	Provider                       string `json:"provider"`
-	Region                         string `json:"region"`
-	CredentialEndpoint             string `json:"credential_endpoint"`
-	CredentialPassword             string `json:"credential_password"`
-	CredentialPasswordConfirmation string `json:"credential_password_confirmation"`
+	Name                           string `json:"name,omitempty"`
+	Provider                       string `json:"provider,omitempty"`
+	Region                         string `json:"region,omitempty"`
+	CredentialEndpoint             string `json:"credential_endpoint,omitempty"`
+	CredentialPassword             string `json:"credential_password,omitempty"`
+	CredentialPasswordConfirmation string `json:"credential_password_confirmation,omitempty"`
 }
 
 func (c *Client) GetCluster(clusterID string) (*Cluster, error) {
