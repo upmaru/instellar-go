@@ -60,6 +60,7 @@ type Component struct {
 			CurrentState string   `json:"current_state"`
 			Slug         string   `json:"slug"`
 			Provider     string   `json:"provider"`
+			Driver       string   `json:"driver"`
 			Version      string   `json:"version"`
 			ClusterIDS   []int    `json:"cluster_ids"`
 			Channels     []string `json:"channels"`
