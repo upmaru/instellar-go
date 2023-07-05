@@ -61,6 +61,14 @@ func TestCreateComponent(t *testing.T) {
 	httpmock.RegisterResponder("POST", "/provision/components",
 		httpmock.NewStringResponder(201, fmt.Sprintf(componentJSON, "active", "some-db")))
 
+	var componentCredentialParams = ComponentCredentialParams{
+		Username: "postgres",
+		Password: "postgres",
+		Database: "postgres",
+		Host:     "localhost",
+		Port:     5432,
+	}
+
 	var componentParams = ComponentParams{
 		Name:       "some-db",
 		Provider:   "aws",
@@ -68,13 +76,7 @@ func TestCreateComponent(t *testing.T) {
 		Version:    "15.2",
 		ClusterIDS: []int{1, 2},
 		Channels:   []string{"master", "develop"},
-		Credential: ComponentCredentialParams{
-			Username: "postgres",
-			Password: "postgres",
-			Database: "postgres",
-			Host:     "localhost",
-			Port:     5432,
-		},
+		Credential: &componentCredentialParams,
 	}
 
 	component, _ := client.CreateComponent(componentParams)
