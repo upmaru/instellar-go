@@ -64,7 +64,7 @@ func TestCreateComponent(t *testing.T) {
 	var componentCredentialParams = ComponentCredentialParams{
 		Username: "postgres",
 		Password: "postgres",
-		Database: "postgres",
+		Resource: "postgres",
 		Host:     "localhost",
 		Port:     5432,
 	}

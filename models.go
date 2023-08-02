@@ -67,9 +67,10 @@ type Component struct {
 			Credential   struct {
 				Username string `json:"username"`
 				Password string `json:"password"`
+				Resource string `json:"resource"`
 				Host     string `json:"host"`
 				Port     int    `json:"port"`
-				Database string `json:"database"`
+				Ssl      bool   `json:"ssl"`
 			} `json:"credential"`
 		} `json:"attributes"`
 	} `json:"data"`
