@@ -52,3 +52,26 @@ type Storage struct {
 		} `json:"attributes"`
 	} `json:"data"`
 }
+
+type Component struct {
+	Data struct {
+		Attributes struct {
+			ID           int      `json:"id"`
+			CurrentState string   `json:"current_state"`
+			Slug         string   `json:"slug"`
+			Provider     string   `json:"provider"`
+			Driver       string   `json:"driver"`
+			Version      string   `json:"version"`
+			ClusterIDS   []int    `json:"cluster_ids"`
+			Channels     []string `json:"channels"`
+			Credential   struct {
+				Username string `json:"username"`
+				Password string `json:"password"`
+				Resource string `json:"resource"`
+				Host     string `json:"host"`
+				Port     int    `json:"port"`
+				Ssl      bool   `json:"ssl"`
+			} `json:"credential"`
+		} `json:"attributes"`
+	} `json:"data"`
+}
