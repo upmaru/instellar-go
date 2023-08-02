@@ -70,7 +70,7 @@ type Component struct {
 				Resource string `json:"resource"`
 				Host     string `json:"host"`
 				Port     int    `json:"port"`
-				Ssl      bool   `json:"ssl"`
+				Secure   bool   `json:"secure"`
 			} `json:"credential"`
 		} `json:"attributes"`
 	} `json:"data"`

@@ -67,6 +67,7 @@ func TestCreateComponent(t *testing.T) {
 		Resource: "postgres",
 		Host:     "localhost",
 		Port:     5432,
+		Secure:   false,
 	}
 
 	var componentParams = ComponentParams{

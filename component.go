@@ -29,6 +29,7 @@ type ComponentCredentialParams struct {
 	Host     string `json:"host,omitempty"`
 	Port     int    `json:"port,omitempty"`
 	Resource string `json:"resource,omitempty"`
+	Secure   bool   `json:"secure,omitempty"`
 }
 
 func (c *Client) GetComponent(componentID string) (*Component, error) {
