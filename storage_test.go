@@ -60,6 +60,7 @@ func TestCreateStorage(t *testing.T) {
 		Region:                    "us-east-1",
 		CredentialAccessKeyID:     "something",
 		CredentialSecretAccessKey: "secret",
+		InsterraComponentID:       1,
 	}
 
 	storage, _ := client.CreateStorage(storageParams)

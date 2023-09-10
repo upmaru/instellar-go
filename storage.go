@@ -19,6 +19,7 @@ type StorageParams struct {
 	Region                    string `json:"region,omitempty"`
 	CredentialAccessKeyID     string `json:"credential_access_key_id,omitempty"`
 	CredentialSecretAccessKey string `json:"credential_secret_access_key,omitempty"`
+	InsterraComponentID       int    `json:"insterra_component_id,omitempty"`
 }
 
 func (c *Client) GetStorage(storageID string) (*Storage, error) {

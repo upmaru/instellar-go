@@ -60,6 +60,7 @@ func TestCreateCluster(t *testing.T) {
 		CredentialEndpoint:             "something:8443",
 		CredentialPassword:             "somepass",
 		CredentialPasswordConfirmation: "somepass",
+		InsterraComponentID:            1,
 	}
 
 	cluster, _ := client.CreateCluster(clusterParams)
