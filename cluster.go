@@ -20,6 +20,7 @@ type ClusterParams struct {
 	CredentialEndpoint             string `json:"credential_endpoint,omitempty"`
 	CredentialPassword             string `json:"credential_password,omitempty"`
 	CredentialPasswordConfirmation string `json:"credential_password_confirmation,omitempty"`
+	InsterraComponentID            int    `json:"insterra_component_id,omitempty"`
 }
 
 func (c *Client) GetCluster(clusterID string) (*Cluster, error) {

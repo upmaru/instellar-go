@@ -78,6 +78,7 @@ func TestCreateComponent(t *testing.T) {
 		ClusterIDS: []int{1, 2},
 		Channels:   []string{"master", "develop"},
 		Credential: &componentCredentialParams,
+		InsterraComponentID: 1,
 	}
 
 	component, _ := client.CreateComponent(componentParams)

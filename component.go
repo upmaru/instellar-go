@@ -14,13 +14,14 @@ type componentReq struct {
 }
 
 type ComponentParams struct {
-	Name       string                     `json:"name,omitempty"`
-	Provider   string                     `json:"provider,omitempty"`
-	Version    string                     `json:"version,omitempty"`
-	Channels   []string                   `json:"channels,omitempty"`
-	ClusterIDS []int                      `json:"cluster_ids,omitempty"`
-	Driver     string                     `json:"driver,omitempty"`
-	Credential *ComponentCredentialParams `json:"credential,omitempty"`
+	Name                string                     `json:"name,omitempty"`
+	Provider            string                     `json:"provider,omitempty"`
+	Version             string                     `json:"version,omitempty"`
+	Channels            []string                   `json:"channels,omitempty"`
+	ClusterIDS          []int                      `json:"cluster_ids,omitempty"`
+	Driver              string                     `json:"driver,omitempty"`
+	Credential          *ComponentCredentialParams `json:"credential,omitempty"`
+	InsterraComponentID int                        `json:"insterra_component_id,omitempty"`
 }
 
 type ComponentCredentialParams struct {
