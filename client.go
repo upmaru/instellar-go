@@ -30,7 +30,7 @@ type AcceptedStates []int
 
 func NewClient(host, token *string) (*Client, error) {
 	c := Client{
-		HTTPClient: &http.Client{Timeout: 10 * time.Second},
+		HTTPClient: &http.Client{Timeout: 30 * time.Second},
 		HostURL:    HostURL,
 	}
 
