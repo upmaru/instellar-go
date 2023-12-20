@@ -25,12 +25,13 @@ type ComponentParams struct {
 }
 
 type ComponentCredentialParams struct {
-	Username string `json:"username,omitempty"`
-	Password string `json:"password,omitempty"`
-	Host     string `json:"host,omitempty"`
-	Port     int    `json:"port,omitempty"`
-	Resource string `json:"resource,omitempty"`
-	Secure   bool   `json:"secure,omitempty"`
+	Username    string `json:"username,omitempty"`
+	Password    string `json:"password,omitempty"`
+	Certificate string `json:"certificate,omitempty"`
+	Host        string `json:"host,omitempty"`
+	Port        int    `json:"port,omitempty"`
+	Resource    string `json:"resource,omitempty"`
+	Secure      bool   `json:"secure,omitempty"`
 }
 
 func (c *Client) GetComponent(componentID string) (*Component, error) {
