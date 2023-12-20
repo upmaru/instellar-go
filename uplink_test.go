@@ -15,31 +15,7 @@ const uplinkJSON = `
       "current_state": "%s",
       "id": 8,
 			"channel_slug": "develop",
-      "installation_id": %d,
-			"cluster_id": %d
-    },
-    "id": "8",
-    "links": {
-      "self": "http://localhost:4000/provision/uplinks/8"
-    },
-    "relationships": {},
-    "type": "uplinks"
-  },
-  "included": [],
-  "links": {
-    "self": "http://localhost:4000/provision/uplinks/8"
-  }
-}
-`
-
-const uplinkJSONwithDB = `
-{
-  "data": {
-    "attributes": {
-      "current_state": "%s",
-      "id": 8,
-			"channel_slug": "develop",
-			"database_url": "postgresql://user:pass@localhost/sample_db",
+			"kit_slug": "pro",
       "installation_id": %d,
 			"cluster_id": %d
     },
@@ -67,20 +43,6 @@ func TestGetUplink(t *testing.T) {
 	uplink, _ := client.GetUplink("8")
 
 	assert.Equal(t, uplink.Data.Attributes.ID, 8)
-	assert.Nil(t, uplink.Data.Attributes.DatabaseURL)
-}
-
-func TestGetUplinkWithDB(t *testing.T) {
-	setup()
-	defer teardown()
-
-	httpmock.RegisterResponder("GET", "/provision/uplinks/8",
-		httpmock.NewStringResponder(200, fmt.Sprintf(uplinkJSONwithDB, "active", 1, 2)))
-
-	uplink, _ := client.GetUplink("8")
-
-	assert.Equal(t, uplink.Data.Attributes.ID, 8)
-	assert.Equal(t, *uplink.Data.Attributes.DatabaseURL, "postgresql://user:pass@localhost/sample_db")
 }
 
 func TestCreateUplink(t *testing.T) {
@@ -92,6 +54,7 @@ func TestCreateUplink(t *testing.T) {
 
 	var uplinkSetupParams = UplinkSetupParams{
 		ChannelSlug: "develop",
+		KitSlug: "pro",
 	}
 
 	uplink, _ := client.CreateUplink("some-cluster", uplinkSetupParams)
