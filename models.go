@@ -22,7 +22,7 @@ type Uplink struct {
 			InstallationID int     `json:"installation_id"`
 			ClusterID      int     `json:"cluster_id"`
 			ChannelSlug    string  `json:"channel_slug"`
-			DatabaseURL    *string `json:"database_url"`
+			KitSlug        string  `json:"kit_slug"`
 		} `json:"attributes"`
 	} `json:"data"`
 }
@@ -65,12 +65,13 @@ type Component struct {
 			ClusterIDS   []int    `json:"cluster_ids"`
 			Channels     []string `json:"channels"`
 			Credential   struct {
-				Username string `json:"username"`
-				Password string `json:"password"`
-				Resource string `json:"resource"`
-				Host     string `json:"host"`
-				Port     int    `json:"port"`
-				Secure   bool   `json:"secure"`
+				Username    string  `json:"username"`
+				Password    string  `json:"password"`
+				Resource    string  `json:"resource"`
+				Certificate *string `json:"certificate"`
+				Host        string  `json:"host"`
+				Port        int     `json:"port"`
+				Secure      bool    `json:"secure"`
 			} `json:"credential"`
 		} `json:"attributes"`
 	} `json:"data"`
