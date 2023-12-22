@@ -80,10 +80,20 @@ func (c *Client) CreateUplink(clusterID string, uplinkSetupParams UplinkSetupPar
 	return &newUplinkInstallation, nil
 }
 
-func (c *Client) UpdateUplink(uplinkID string) (*Uplink, error) {
+func (c *Client) UpdateUplink(uplinkID string, uplinkSetupParams UplinkSetupParams) (*Uplink, error) {
+	params := uplinkSetupReq{
+		Uplink: uplinkSetupParams,
+	}
+
+	rb, err := json.Marshal(params)
+
+	if err != nil {
+		return nil, err
+	}
+
 	req, err := http.NewRequest("PATCH",
 		fmt.Sprintf("%s/%s/%s", c.HostURL, uplinksPath, uplinkID),
-		nil)
+		strings.NewReader(string(rb)))
 
 	if err != nil {
 		return nil, err
