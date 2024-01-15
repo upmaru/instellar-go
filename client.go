@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-const HostURL string = "https://web.instellar.app"
+const HostURL string = "https://opsmaru.com"
 
 type Client struct {
 	HostURL    string
