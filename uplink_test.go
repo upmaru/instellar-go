@@ -17,7 +17,8 @@ const uplinkJSON = `
 			"channel_slug": "develop",
 			"kit_slug": "%s",
       "installation_id": %d,
-			"cluster_id": %d
+			"cluster_id": %d,
+			"nodes": ["node-01"]
     },
     "id": "8",
     "links": {
@@ -43,6 +44,7 @@ func TestGetUplink(t *testing.T) {
 	uplink, _ := client.GetUplink("8")
 
 	assert.Equal(t, uplink.Data.Attributes.ID, 8)
+	assert.Equal(t, uplink.Data.Attributes.Nodes, []string{"node-01"})
 }
 
 func TestCreateUplink(t *testing.T) {
@@ -54,7 +56,7 @@ func TestCreateUplink(t *testing.T) {
 
 	var uplinkSetupParams = UplinkSetupParams{
 		ChannelSlug: "develop",
-		KitSlug: "pro",
+		KitSlug:     "pro",
 	}
 
 	uplink, _ := client.CreateUplink("some-cluster", uplinkSetupParams)
@@ -71,7 +73,7 @@ func TestUpdateUplink(t *testing.T) {
 
 	uplinkSetupParams := UplinkSetupParams{
 		ChannelSlug: "develop",
-		KitSlug: "lite",
+		KitSlug:     "lite",
 	}
 
 	uplink, _ := client.UpdateUplink("8", uplinkSetupParams)

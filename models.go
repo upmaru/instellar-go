@@ -17,12 +17,13 @@ type Cluster struct {
 type Uplink struct {
 	Data struct {
 		Attributes struct {
-			ID             int     `json:"id"`
-			CurrentState   string  `json:"current_state"`
-			InstallationID int     `json:"installation_id"`
-			ClusterID      int     `json:"cluster_id"`
-			ChannelSlug    string  `json:"channel_slug"`
-			KitSlug        string  `json:"kit_slug"`
+			ID             int      `json:"id"`
+			CurrentState   string   `json:"current_state"`
+			InstallationID int      `json:"installation_id"`
+			ClusterID      int      `json:"cluster_id"`
+			ChannelSlug    string   `json:"channel_slug"`
+			KitSlug        string   `json:"kit_slug"`
+			Nodes          []string `json:"nodes"`
 		} `json:"attributes"`
 	} `json:"data"`
 }
