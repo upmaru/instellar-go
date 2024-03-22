@@ -85,6 +85,7 @@ type Balancer struct {
 			Name         string `json:"name"`
 			CurrentState string `json:"current_state"`
 			Address      string `json:"address"`
+			ClusterID    int    `json:"cluster_id"`
 		} `json:"attributes"`
 	} `json:"data"`
 }
