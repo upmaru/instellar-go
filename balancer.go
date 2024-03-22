@@ -89,8 +89,8 @@ func (c *Client) UpdateBalancer(balancerID string, balancerParams BalancerParams
 		return nil, err
 	}
 
-	req, err := http.NewRequest("PATCH", 
-		fmt.Sprintf("%s/%s/%s", c.HostURL, balancersPath, balancerID), 
+	req, err := http.NewRequest("PATCH",
+		fmt.Sprintf("%s/%s/%s", c.HostURL, balancersPath, balancerID),
 		strings.NewReader(string(rb)))
 
 	if err != nil {

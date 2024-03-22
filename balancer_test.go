@@ -69,11 +69,11 @@ func TestCreateBalancer(t *testing.T) {
 	setup()
 	defer teardown()
 
-	httpmock.RegisterResponder("POST", "/provision/clusters/1/balancers", 
+	httpmock.RegisterResponder("POST", "/provision/clusters/1/balancers",
 		httpmock.NewStringResponder(201, balancerJSON))
 
 	balancerParams := BalancerParams{
-		Name: "some-balancer",
+		Name:    "some-balancer",
 		Address: "some.example.com",
 	}
 
@@ -90,7 +90,7 @@ func TestUpdateBalancer(t *testing.T) {
 		httpmock.NewStringResponder(200, balancerJSON))
 
 	balancerParams := BalancerParams{
-		Name: "some-balancer",
+		Name:    "some-balancer",
 		Address: "some.example.com",
 	}
 
@@ -104,7 +104,7 @@ func TestDeleteBalancer(t *testing.T) {
 	setup()
 	defer teardown()
 
-	httpmock.RegisterResponder("DELETE", "/provision/balancers/1", 
+	httpmock.RegisterResponder("DELETE", "/provision/balancers/1",
 		httpmock.NewStringResponder(200, deletedBalancerJSON))
 
 	balancer, _ := client.DeleteBalancer("1")
