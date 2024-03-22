@@ -77,3 +77,14 @@ type Component struct {
 		} `json:"attributes"`
 	} `json:"data"`
 }
+
+type Balancer struct {
+	Data struct {
+		Attributes struct {
+			ID           int    `json:"id"`
+			Name         string `json:"name"`
+			CurrentState string `json:"current_state"`
+			Address      string `json:"address"`
+		} `json:"attributes"`
+	} `json:"data"`
+}
